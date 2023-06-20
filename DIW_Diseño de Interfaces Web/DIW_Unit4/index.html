@@ -1,0 +1,297 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style type="text/css">
+    :root {
+      --color-one: #333;
+      --color-two: #D2B4DE;
+      --color-three: #EDBB99;
+      --color-four: #F4ECF7;
+    }
+
+    body{
+      background:url('https://www.shutterstock.com/image-vector/seamless-vector-pattern-hand-drawn-600w-642614086.jpg');
+      margin:0px;
+    }
+
+    header{
+      width:100%;
+      background:var(--color-one);
+      padding:5px;
+      border-bottom:1px solid #000;
+      position: fixed;
+      z-index:1;
+    }
+
+    .logo{
+      float:left;
+    }
+
+    nav {
+      float:inherit;
+    }
+
+    nav ul {
+      list-style: none;
+      overflow: hidden; 
+    }
+
+    nav ul li {
+      float: left;
+      font-family: Arial, sans-serif;
+      font-style:oblique;
+      font-size: 16px;
+    }
+    nav ul li a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    nav ul li:hover {
+      background: var(--color-two);
+    }
+    .wrapper{
+      margin-top:100px;
+      display: grid;
+      grid-auto-rows: minmax(100px, auto); 
+      height: 50vh;
+    }
+    .grande {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      background:url('https://live.staticflickr.com/7310/16371689852_e6d30c72f2_b.jpg');
+      background-size:cover;
+    }
+    .tarta{
+      grid-column: 2;
+      grid-row: 1;
+      background:url('https://www.lobbymarket.es/wp-content/uploads/2020/12/trucos-para-hacer-tartas-perfectas.jpg');
+      background:cover;
+      background-size:100% 100%;
+    }
+    .cupecake{
+      grid-column: 3;
+      grid-row: 1;
+      background:url('https://www.publicdomainpictures.net/pictures/240000/nahled/cupcakes-on-a-tray.jpg');
+      background:cover;
+      background-size:100% 100%;
+    }
+    .pastel {
+      grid-column: 3;
+      grid-row: 2;
+      background:url('https://pastelerialamarina.es/wp-content/uploads/2020/07/pasteles-surtidos-pasteler%C3%ADa-la-marina.jpeg');
+      background:cover;
+      background-size:100% 100%;
+    }
+    .macaron{
+      grid-column: 2;
+      grid-row: 2;
+      background:url('https://cdn2.hubspot.net/hubfs/839217/Todo%20lo%20que%20necesitas%20saber%20sobre%20la%20pasteler%C3%ADa%20francesa.jpg');
+      background:cover;
+      background-size:100% 100%;
+    }
+    .titlewrapper{
+      font-family: 'Pacifico', cursive;
+      color:#000;
+      text-align:center;
+    }
+    .titleSpecialwrapper{
+      font-family: 'Pacifico', cursive;
+      text-align:center;
+      font-weight: bold;
+      color:#000;
+      width:auto;
+      font-size:25px;
+      background:#fafafa;
+      padding-top:10px;
+      padding-bottom:10px;
+      opacity:0.8;
+    }
+    .textwrapper{
+      font-weight: bold;
+      text-align:center;
+      color:#000;
+      width:auto;
+      background:#fafafa;
+      padding-top:10px;
+      padding-bottom:10px;
+      opacity:0.8;
+    }
+
+    .contactForm{
+      background:var(--color-one);
+      margin-top:50px;
+      text-align:center;
+      padding-top:10px;
+      padding-bottom: 10px;
+    }
+
+    .contactForm h1{
+      text-align:center;
+      font-family: 'Pacifico', cursive;
+      color:#fff;
+    }
+
+    .contactForm input{
+      -moz-border-radius:10px;
+      border-radius:10px;
+      width:80%;
+      height:50px;
+      text-align:center;
+      margin-top:10px;
+    }
+
+    .contactForm button{
+      -moz-border-radius:10px;
+      border-radius:10px;
+      width:80%;
+      height:50px;
+      text-align:center;
+      margin-top:10px;
+      background:var(--color-three);
+      font-weight:bold;
+    }
+    .contactForm button:hover{
+      background:var(--color-two);
+      cursor:pointer;
+    }
+
+    footer {
+      margin-top:50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(100px, auto); 
+      background:var(--color-one);
+    }
+    .left{
+      background:var(--color-two);
+      grid-colum: 1/3;
+      grid-row:1/2;
+      text-align:center;
+    }
+    .center{
+      background:var(--color-four);
+      grid-colum: 2/3;
+      grid-row:1/2;
+      padding-top:20px;
+      text-align:center;
+    }
+    .right{
+      background:var(--color-two);
+      grid-colum: 3/3;
+      grid-row:1/2;
+      text-align:center;
+    }
+    footer div h1{
+      text-align:center;
+      font-family: 'Pacifico', cursive;
+    }
+    footer div a{
+      text-decoration:none;
+      color:var(--color-one);
+      font-weight:bold;
+      font-size:20px;
+      margin-top:5px;
+    }
+    footer div a:hover{
+      color:var(--color-four);
+      transition: text-decoration 0.8s, color 1s, font-weight 0.5s ease-out 0.1s;
+    }
+
+    footer div span{
+      color:#000;
+      font-weight:bold;
+    }
+
+    .social{
+      grid-column: 2/3;
+      grid-row:2/2;
+      text-align:center;
+      font-size:50px;
+      margin-top:10px;
+      color:var(--color-two);
+    }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img height="80" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/015d7d46850385.5866ae4cee1ac.png" />
+      </div>
+          <nav>
+            <ul>
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Pasteles</a></li>
+              <li><a href="#">Contacto</a></l>
+          </ul>
+        </nav>
+    </header>
+    <br/>
+    <div class="wrapper">
+      <div class="grande">
+        <div class="textwrapper">
+          <h2 class="titlewrapper">Pasteleros de confianza</h2>
+          Llevamos elaborando nuestros productos desde 1950. Usamos las mejores materias primas.<br/>
+          Por ello, todos nuestros productos tienen nuestro sello de excelencia.
+        </div>
+      </div>
+      <div class="cupecake">
+        <div class="titleSpecialwrapper">Cupecakes</div>
+      </div>
+      <div class="tarta">
+        <div class="titleSpecialwrapper">Tartas</div>
+      </div>
+      <div class="pastel">
+        <div class="titleSpecialwrapper">Pasteles</div>
+      </div>
+      <div class="macaron">
+        <div class="titleSpecialwrapper">Macarons</div>
+      </div>
+    </div>
+
+    <div class="contactForm">
+      <h1>¡Contacta con nosotros!</h1>
+      <form>
+          <input type="text" name="nombre" placeholder="Nombre y apellidos" />
+          <input type="email" name="email" placeholder="Correo electrónico" />
+          <button>Enviar mensaje</button>
+      </form>
+    </div>
+
+    <footer>
+      <div class="left">
+        <h1>Enlaces de interés</h1>
+        <a href="#">Enlace 1</a><br/>
+        <a href="#">Enlace 2</a><br/>
+        <a href="#">Enlace 3</a><br/>
+        <a href="#">Enlace 4</a><br/>
+        <a href="#">Enlace 5</a><br/>
+        <a href="#">Enlace 6</a><br/>
+      </div>
+      <div class="center">
+        <img height="200" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/015d7d46850385.5866ae4cee1ac.png" />
+        <h1>Endulzando momentos desde 1950</h1>
+      </div>
+      <div class="right">
+        <h1>Nuestra ubicación</h1>
+        <span>Estamos situados en C/Fantasía de Guadalajara</span><br/>
+          <iframe width="380" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=C.%20Fantas%C3%ADa,%2019005,%20Guadalajara&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+      </div>
+      <div class="social">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+        <i class="fa fa-pinterest" aria-hidden="true"></i>
+        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      </div>
+    </footer>
+  </body>
+</html>

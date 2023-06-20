@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="actividad3.css"/>
+    <title>DIW08 ACT3 - Jorge Jiménez Juara</title>
+</head>
+<body>
+    <div class="content">
+
+        <div class="card">
+
+            <div class="image one" id="imagen1"></div>
+            <h2>Tempora</h2>
+
+            <i class="subtitle">Tempora</i><br/>
+            <span> Loren ipsum dolor sit, amet consectetur adipisicing elit. Tempora, dolem! 
+                Quae ut dolores quis, ex amet, amet consectetur adispisicing elit. Tempora, dolem!
+            </span>
+            <button class="more">More</button>
+        </div>
+
+        <div class="card">
+
+            <div class="image two" id="imagen2"></div>
+            <h2>Tempora</h2>
+
+            <i class="subtitle">Tempora</i><br/>
+            <span> Loren ipsum dolor sit, amet consectetur adipisicing elit. Tempora, dolem! 
+                Quae ut dolores quis, ex amet, amet consectetur adispisicing elit. Tempora, dolem!
+            </span>
+            <button class="more">More</button>
+        </div>
+
+        <div class="card">
+
+            <div class="image three" id="imagen3"></div>
+            <h2>Tempora</h2>
+
+            <i class="subtitle">Tempora</i><br/>
+            <span> Loren ipsum dolor sit, amet consectetur adipisicing elit. Tempora, dolem! 
+                Quae ut dolores quis, ex amet, amet consectetur adispisicing elit. Tempora, dolem!
+            </span>
+            <button class="more">More</button>
+        </div>
+
+
+    </div>
+</body>
+</html>
+
+<script>
+
+    let imagen1 = document.getElementById("imagen1");
+    let imagen2 = document.getElementById("imagen2");
+    let imagen3 = document.getElementById("imagen3");
+
+    let change = "_";
+
+    setInterval(function() {
+        
+        imagen1.className = "image one"+change;
+        imagen2.className = "image two"+change;;
+        imagen3.className = "image three"+change;
+
+        if(change == "_"){ change = ""; }else{ change = "_"; }
+    }, 2000);
+</script>

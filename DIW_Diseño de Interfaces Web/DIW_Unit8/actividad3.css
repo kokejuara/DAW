@@ -1,0 +1,76 @@
+
+
+.content{
+    margin:100px auto;
+    width:60%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card{
+    border:1px solid #333;
+    width:30%;
+    padding:5px;
+    box-shadow: 5px 5px 5px #ccc;
+}
+.image{
+    margin-top:15px;
+    width:95%;
+    height:200px;   
+    margin-left:2.5%;
+}
+.card h2{
+    text-align: center;
+}
+.card i{
+    margin-left:10px;
+    color:#999;
+}
+
+button{
+    width:100%;
+    height:25px;
+    margin-top:10px;
+    background:#000;
+    color:#FFF;
+    border: none;
+    font-weight: bold;
+}
+button:hover{
+    background: #FFF;
+    color:#000;
+    border:1px solid #000;
+    cursor:pointer;
+    transition: 1s;
+}
+
+.one{
+    background:url("img/actividad3-1.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.two{
+    background:url("img/actividad3-2.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.three{
+    background:url("img/actividad3-3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.one_{
+    background:url("img/actividad3-4.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.two_{
+    background:url("img/actividad3-5.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.three_{
+    background:url("img/actividad3-6.jpg");
+    background-size: cover;
+    background-position: center;
+}

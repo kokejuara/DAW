@@ -1,0 +1,253 @@
+*{
+    margin:0px;
+    padding:0px;
+    text-align:center;
+}
+h1{
+    margin-top:50px;
+}
+.actividad1{
+    width:200px;
+    height:200px;
+    background: url(img/montaña.jpg);
+    background-position: center;
+    margin:10px auto;
+    border:10px solid rgba(45,52,194,.5);
+    border-radius: 50%;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    text-align: center;
+}
+.actividad1_title{
+    opacity:0;
+    visibility: hidden;
+    display: hidden;
+    color:#fff;
+    font-size:28px;
+    font-weight: bold;
+    transition: visibility 0s linear 500ms, opacity 500ms;
+    position:relative;
+}
+.actividad1_pie{
+    opacity:0;
+    visibility: hidden;
+    color:#fff; 
+    margin-top:0px;
+    font-size:20px;
+    font-style: italic;
+    text-align: center;
+    transition: visibility 0s linear 1000ms, opacity 1000ms;
+}
+.actividad1_pie hr {
+    background: #FFF;
+    height: 1px;
+    width:150px;
+    position: center;
+    margin-left:25px;
+    border:0px;
+}
+.actividad1:hover{
+    filter: hue-rotate(25deg);
+    border:10px solid rgba(45,52,194,.0);
+}
+.actividad1:hover > .actividad1_title{
+    visibility: visible;
+    opacity:1;
+    
+}
+.actividad1:hover > .actividad1_pie{
+    visibility: visible;
+    opacity:1;
+}
+.licencia{
+    font-style: italic;
+    font-size:12px;
+}
+
+
+.actividad2{
+    width: 700px;
+    height:700px;
+    background: url(img/montaña3.jpg);
+    margin:10px auto;
+    background-position:center;
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+}
+.actividad2 h2{
+    color:#FFF;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top:45%;
+    font-size:40px;
+    text-shadow: 2px 2px #000;
+}
+.actividad2 hr{
+    width:50px;
+    margin:0px auto;
+    border:1px solid hsl(22, 77%, 44%);
+    background: hsl(22, 77%, 44%);
+    height:2px;
+}
+.actividad2 span{
+    margin-top:40px;
+    font-style: italic;
+    color:#FFF;
+    font-size:20px;
+    text-shadow: 2px  #000;
+}
+.actividad2_content{
+    margin-top:160px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    padding:60px;
+    font-size:18px;
+    visibility:hidden;
+    opacity:0;
+}
+.actividad2 button{
+    padding:15px;
+    width:200px;
+    margin: 0px auto;
+    background:#fff;
+    border:1px solid #ccc;
+    font-weight:bold;
+}.actividad2:hover{
+    animation-name: actividad2_bri;
+    animation-duration:2s;
+    animation-fill-mode: forwards;
+}
+.actividad2 button:hover{
+    color:#FFF;
+    cursor:pointer;
+    animation-name:boton_animacion;
+    animation-duration:3s;
+    animation-fill-mode: forwards;
+}
+
+.actividad2:hover h2{
+    animation-name: subir;
+    animation-duration:3s;
+    animation-fill-mode: forwards;
+}
+.actividad2:hover hr{
+    animation-name:expandir;
+    animation-duration:3s;
+    animation-fill-mode: forwards;
+}
+.actividad2:hover .actividad2_content{
+    animation-name:mostrar_contenido;
+    animation-duration:2s;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+@keyframes subir {
+    100% { margin-top:20%; }
+}
+@keyframes expandir {
+    100% { width:300px; height:4px; }
+}
+@keyframes mostrar_contenido{
+    100% { visibility:visible; opacity:1;}
+}
+@keyframes boton_animacion{
+    0% { background: #FFF; color:#000; }
+    25% { background: #FFB945; color:#666; }
+    50% {  background: #B16F00; color:#FFF; }
+    75% { background: #FFB945; color:#666; }
+    100% { background: #FFF; color:#000;}
+}
+@keyframes actividad2_bri {
+    100% { filter: brightness(.8); }
+}
+
+
+.actividad3{
+    width: 200px;
+    height: 50px;
+    margin: 2rem auto;
+    z-index: 1;
+    position: relative;
+    border: 0px;
+}
+.actividad3::before, .actividad3::after{
+    content: '';
+    position: absolute;
+    opacity:0;
+}
+.actividad3::before{
+    top:0;
+    left:0;
+    border-top:2px solid #000;
+    border-right: 2px solid #000;
+    
+}
+.actividad3::after{
+    bottom:0px;
+    right:0px;
+    border-bottom:1px solid #000;
+    border-left:1px solid #000;
+    
+}
+.actividad3:hover::before {
+    animation: 1.5s antes linear forwards;
+}
+.actividad3:hover::after{
+    animation: 1s despues linear forwards 1.7s;
+}
+
+@keyframes antes {
+    0% { opacity: 1; top: -2px; left: 0; width:0; }
+    80% { top: -2px; left: 0; width: 100%; height: 0; }
+    100% { top: -2px; left: 0; width: 100%; height: 100%; opacity: 1; }
+}
+@keyframes despues {
+    0% { opacity: 1; bottom: 0; right: 0; height: 0; width: 0; }
+    80% { bottom: 0; right: 0; width: 100%; height: 0; }
+    100% { bottom: 0; right: 0; width: 100%; height: 100%; opacity: 1; }
+}
+
+.actividad4{
+    background:url(img/imagen_ejercicio_4.jpg);
+    width:430px;
+    height:360px;
+    margin: 0px auto;
+    border:1px solid #CCC;
+    text-align: left;
+    justify-content: left;
+    background-position-x:-50px;
+    transition:0.5s;
+    filter:brightness(.8)
+}
+.actividad4 h2{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff;
+    margin-top:250px;
+    text-align:left;
+    margin-left:20px;
+    font-weight:lighter;
+}
+.actividad4 h2 b{
+    font-weight: bold;
+}
+.actividad4 span{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff;
+    margin-left:20px;
+    opacity: 0;
+    visibility: hidden;
+}
+.actividad4:hover{
+    background-position:0px;
+    filter:brightness(1)
+}
+.actividad4:hover h2{
+    margin-top:220px;
+    transition:0.5s;
+}
+.actividad4:hover span{
+    opacity:1;
+    visibility: visible;
+    transition:0.5s;
+}
