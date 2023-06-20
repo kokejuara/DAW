@@ -1,0 +1,163 @@
+<!DOCTYPE  html>
+<html>
+    <head>
+        <meta  http-equiv="content-type"  content="text/html;charset=utf-8">
+        <title>DWEC03 Jorge Jimenez Juara</title>
+        <script type="text/javascript">
+        //PRIMER BLOQUE DE SCRIPTS CON FUNCIONES.
+
+        //CREAMOS LA FUNCIÓN nuevaVentana, que será llamada con el evento onLoad del body del HTML.
+            var nuevaVentana = () => {
+                //Creamos la ventana que se abrirá.
+                var ventana = window.open("", "nueva", "height=800, width=600, resizable=0");
+                //Imprimimos texto h3.
+                ventana.document.writeln("<h3>Ejemplo de Ventana Nueva</h3>");
+                //Imprimimos mediante windows.location la URL completa.
+                ventana.document.writeln("<b>URL Completa: </b>"+window.location+"<br/>");
+                //Imprimimos mediante windows.location.protocol el protocolo usado.
+                ventana.document.writeln("<b>Protocolo: </b>"+window.location.protocol+"<br/>");
+                //Imprimimos el codigo del navegador.
+                ventana.document.writeln("<b>Nombre navegador: </b>"+window.navigator.appCodeName+"<br/>");
+                //Creamos una variable Java
+                let java;
+                //Si navigator.javaEnabled es true, devolvemos si, sino guardamos un NO.
+                if(ventana.navigator.javaEnabled){ java = "SI"; }else{ java = "NO"; }
+                //Imprimimos la línea.
+                ventana.document.writeln("Java <b>"+java+"</b> disponible en esta ventana<br/>");
+                //Cargamos un Iframe que contiene google. (Google capa las URL cargadas en iframe por seguridad, por lo que posiblemente de error.)
+                ventana.document.write('<iframe src="http://www.google.es/" witdh="800" height="600"></iframe>');
+            };
+
+        </script>
+    </head>
+    <!-- Al cargar body, ejecutamos funcion nuevaVentana().-->
+    <body onLoad="nuevaVentana()">
+        
+    </body>
+
+
+    <script type="text/javascript">
+        //SEGUNDO BLOQUE DE SCRIPTS sin funciones.
+
+            //Imprimimos un titulo, y una barra.
+           document.write("<h1>TAREA DWEC03</h1><HR />");
+
+           //Solicitamos nombre, dia, mes y año.
+            var nombre = prompt("Introduzca su nombre y apellidos");
+            var dia = prompt("Introduzca DIA de nacimiento:");
+            var mes = prompt("Introduzca MES de nacimiento");
+            var ano = prompt("Introduzca AÑO de nacimiento");
+
+            //Imprimimos mensaje con el nombre.
+            document.write("Buenos días "+nombre+"<br/>");
+            //Usamos string.length para calcular la longitud del string.
+            document.write("Tu nombre tiene "+nombre.length+" caracteres, incluidos espacios.<br/>");
+
+            //Obtenemos mediante indexOf la posición de la primera A mayúscula y a minuscula y las almacenamos en 2 variables.
+            var primeraMayus = nombre.indexOf('A');
+            var primeraMinus = nombre.indexOf('a');
+
+            //Si la primeraMayus es igual a -1 (no existe A mayus), y primeraMayus y primeraMinus tienen mismo valor (tampoco existe a minuscula)
+            if(primeraMayus == -1 && primeraMayus == primeraMinus){
+                //Imprimimos que no existe A ni a
+                document.write("No existe letra A en tu nombre.<br/>");
+                //Si por el contrario existe una A.
+            }else{
+                //Cremaos una variable que contendrá la posición de la primera A.
+                var posicionPrimeraA;
+                //Nos preguntamos si primeraMayus es menor que primeraMinus y primeraMayus existe.
+                if(primeraMayus < primeraMinus && primeraMayus != -1){
+                    //De ser así, la posición de la primera A es mayúscula y obtenemos el número en el que está.
+                    posicionPrimeraA = primeraMayus+1;
+                }else{
+                    //Sino, la primera a será una minúscula, y de igual modo guardamos la posición.
+                    posicionPrimeraA = primeraMinus+1;
+                }
+                //ostramos el mensaje con la posición de la primera (A o a)
+                document.write("La primera letra A de tu nombre está en la posición: "+posicionPrimeraA+"<br/>");
+            }
+
+            //Hacemos de igual modo mediante lastIndexOf la ultima posición de A o a. Y del mismo modo obtenemos la última A o a.
+            var ultimaMayus = nombre.lastIndexOf('A');
+            var ultimaMinus = nombre.lastIndexOf('a');
+
+            if(ultimaMayus == -1 && ultimaMayus == ultimaMinus){
+                document.write("No existe letra A en tu nombre.<br/>");
+            }else{
+                var posicionUltimaA;
+                if(ultimaMayus < ultimaMinus && ultimaMayus != -1){
+                    posicionUltimaA = ultimaMayus+1;
+                }else{
+                    posicionUltimaA = ultimaMinus+1;
+                }
+                //Imprimimos.
+                document.write("La primera letra A de tu nombre está en la posición: "+posicionUltimaA+"<br/>");
+            }
+            
+            //Mediante slice, desplazamos 3 caracteres a la derecha en el string.
+            document.write("Tu nombre menos las 3 primeras letras es: "+nombre.slice(3)+"<br/>");
+            //Usamos .toUpperCase() para mostrar el string en mayúsculas.
+            document.write("Tu nombre todo el mayúsculas es: "+nombre.toUpperCase()+"</br>");
+            //Usamos .toLowerCase() para mostrar el string en minúsculas.
+            document.write("Tu nombre todo en minusculas es: "+nombre.toLowerCase()+"<br/>");
+            
+            
+            //Obtenemos la fecha de hoy mediante Date().
+            var hoy = new Date();
+            //Guardamos en variable edad el valor de la resta entre el año actual y el año introducido.
+            var edad = hoy.getFullYear()-ano;
+            //Si el mes introducido es mayor al mes actual (getMonth()+1 ya que getMonth devuelve valores entre 0 y 11 donde 0 es enero), restamos 1 año.
+            if(mes > hoy.getMonth()+1) {
+                edad--;
+            }else
+            //Mediante elseif, si el mes es mayor o igual al actual, y además el dia es mayor al actual, restamos 1 al año.
+            if(mes>=hoy.getMonth()+1 && dia > hoy.getDate()){
+                edad--;
+            }
+            //Imprimimos la edad.
+            document.write("Tu edad es: "+edad+" años<br/>");
+            
+            //Creo un array con los dias de la semana.
+            var arrayDias = ["lunes", "martes", "miércoles", "jueves", "viernes", "sabado", "domingo"];
+            //Creamos una vcariable diaSemana con una instancia de Date() pasando por parametros el dia, mes y año introducidos mediante el prompt.
+            var diaSemana = new Date(""+ano+"-"+mes+"-"+dia+" 00:00:00");
+            
+            //Imprimimos la posición del array de diaSemana.getDate()-1, y el año tal cual lo introduce el usuario.
+            document.write("Naciste un feliz "+arrayDias[diaSemana.getDay()-1]+" del año "+ano+"<br/>");
+
+            
+
+            //Imprimimos el coseno de 180 mediante uso de Math.cos()-
+            document.write("El coseno de 180 es "+Math.cos(180)+"<br/>");
+
+            //Creamos un array con los números introducidos.
+            var numeros = [34,67,23,75,35,19];
+            //Creo una variable que contendrá el valor mayor.
+            var numeroMayor;
+            //Creo una variable que contendrá la cadena con todos los números del array para después mostrarlos en el enunciado.
+            var cadenaNumeros;
+
+            //Recorremos el array.
+            for(i = 0; i < numeros.length; i++){
+                //Si la cadena de numeros está vacía (undefined), simplemente guardamos el valor del numero recorrido actual, si no, añadimos el número.
+                if(cadenaNumeros == undefined){ cadenaNumeros = numeros[i]; }else{ cadenaNumeros += ", "+numeros[i]; }
+                //Si numeroMayor está vacio, el numero actual es el más grande, si no, comprobamos cual de los 2 numeros es mas grande, y guardamos en numeroMayor el más grande.
+                if(numeroMayor == undefined){ 
+                    numeroMayor = numeros[i]; 
+                }else{
+                    if(numeroMayor < numeros[i]){
+                        numeroMayor = numeros[i];
+                    }
+                }
+            }
+            //Finalmente imprimimos la cadena con todos los números y el número mas grande.
+            document.write("El número mayor de ("+cadenaNumeros+") es: "+numeroMayor+"<br/>");
+            //PAra obtener un número al azar usamos la función Math.random(), la cual devuelve un valor al azar entre 1 y 0.
+            //Después multiplicamos por 100 en valor recibido aleatorio para conseguir un número entre 0 y 99 y finalmente redondeamos a la baja con Math.floor()
+            document.write("Ejemplo de número al azar: "+Math.floor(Math.random()*100));
+
+
+
+            
+    </script>
+</html>

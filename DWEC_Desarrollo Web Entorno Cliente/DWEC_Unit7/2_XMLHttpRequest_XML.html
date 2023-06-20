@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DWEC07.- Ejemplo petición XMLHttpRequest con XML</title>
+		<script type="text/javascript">
+			let peticion;
+
+
+
+			const iniciar = () => {
+
+				//Abrimos XMLHttpRequest
+				peticion = new XMLHttpRequest();
+                
+				//Mediante Open, pasamos por parámetro GET y la URL de la API
+				peticion.open('GET', "https://randomuser.me/api/?format=xml");
+
+				//Enviamos petición.
+				peticion.send();
+				//Listener load que inicia función "cargada":
+				peticion.addEventListener("load", cargada);
+			}
+
+			
+			//Función cargada:
+			const cargada = () => {
+				let htmlMostrar = '';
+				
+
+				//Datos de genero y edad. Para traducir genero usamos un condicional.
+				let gender = peticion.responseXML.documentElement.getElementsByTagName("gender")[0].textContent;
+				let age = peticion.responseXML.documentElement.getElementsByTagName("age")[0].textContent;
+				let showGender;
+				if(gender == "male"){ showGender = "Masculino"; }else{ showGender = "Femenino"; }
+				
+
+				//Datos obtenidos para formar el nombre de persona:
+				let llamamiento = peticion.responseXML.documentElement.getElementsByTagName("title")[0].textContent;
+				let name = peticion.responseXML.documentElement.getElementsByTagName("first")[0].textContent;
+				let lastName = peticion.responseXML.documentElement.getElementsByTagName("last")[0].textContent;
+
+
+				//Datos obtenidos para mostrar dirección:
+				let streetName = peticion.responseXML.documentElement.getElementsByTagName("name")[1].textContent;
+				let number = peticion.responseXML.documentElement.getElementsByTagName("number")[0].textContent;
+				let postcode = peticion.responseXML.documentElement.getElementsByTagName("postcode")[0].textContent;
+				let city = peticion.responseXML.documentElement.getElementsByTagName("city")[0].textContent;
+
+
+				//Datos obtenidos para mostrar contacto:
+				let email = peticion.responseXML.documentElement.getElementsByTagName("email")[0].textContent;
+				let phone = peticion.responseXML.documentElement.getElementsByTagName("phone")[0].textContent;
+				let cell = peticion.responseXML.documentElement.getElementsByTagName("cell")[0].textContent;
+
+				//URL de imágen:
+				let imagen = peticion.responseXML.documentElement.getElementsByTagName("large")[0].textContent;
+				
+
+
+					//Formamos el código HTML que se mostrará:
+					htmlMostrar += '<table border=1 align="center">';
+					htmlMostrar += `<tr><td colspan="2" style="text-align:center;"><img src="${imagen}" /></td></tr>`;
+					htmlMostrar += `<tr><td>Nombre: </td><td>${llamamiento}. ${name} ${lastName}</td></tr>`;
+					htmlMostrar += `<tr><td>Género: </td><td>${showGender}</td></tr>`;
+					htmlMostrar += `<tr><td>Edad: </td><td>${age} años</td></tr>`;
+					htmlMostrar += `<tr><td>Dirección: </td><td>${streetName}, ${number}</td></tr>`;
+					htmlMostrar += `<tr><td>CP y ciudad: </td><td>${postcode} , ${city}</td></tr>`;
+					htmlMostrar += `<tr><td>Correo electrónico: </td><td>${email}</td></tr>`;
+					htmlMostrar += `<tr><td>Teléfono: </td><td>${phone}</td></tr>`;
+					htmlMostrar += `<tr><td>Móvil: </td><td>${cell}</td></tr>`;
+					htmlMostrar += '</table>';
+
+					//Cargamos en el div resultados el HTML generado:
+					document.getElementById("resultados").innerHTML = htmlMostrar;
+			}
+
+			window.addEventListener("load", iniciar, false);
+		</script>
+<style>
+    table{
+        border:1px solid #CCC;
+    }
+</style>
+	</head>
+	<body align="center">
+		<h1>DWEC 07 - Ejercicio 2</h1>
+		<h2>Javascript, XMLHttpRequest y XML</h2>
+		<h3>Jorge Jiménez Juara</h3>
+		<p>
+			<button onclick="iniciar()">Generar otra identidad</button>
+			<br/>
+			<div id="resultados"></div>
+		</p>
+	</body>
+</html>

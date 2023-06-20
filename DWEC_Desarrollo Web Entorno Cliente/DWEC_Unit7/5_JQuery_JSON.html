@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DWEC07.- Ejemplo petición JQuery con JSON</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+
+				//Iniciamos JQuery y pasamos la url, y el tipo de datos. 
+				// Indicamos que una vez hecho, ejecute la función "cargada". Si no, mostramos error en consola:
+                const iniciar = () => {
+				$.ajax({
+					url: "https://randomuser.me/api/",
+					dataType: "json"
+				}).done(cargada).fail(error => {
+					console.log(error);
+				});
+			}
+
+			//Función cargada:
+			const cargada = (data) => {
+
+				
+				let htmlMostrar = '';
+
+				//Datos de genero y edad. Para traducir genero usamos un condicional.
+                let gender = data.results[0].gender;
+				let age = data.results[0].dob.age;
+				let showGender;
+				if (gender == "male") { showGender = "Masculino"; } else { showGender = "Femenino"; }
+
+				//Datos obtenidos para formar el nombre de persona:
+				let llamamiento = data.results[0].name.title;
+				let name = data.results[0].name.first;
+				let lastName = data.results[0].name.last;
+
+				//Datos obtenidos para mostrar dirección:
+				let streetName = data.results[0].location.street.name;
+				let number = data.results[0].location.street.number;
+				let postcode = data.results[0].location.postcode;
+				let city = data.results[0].location.city;
+
+				//Datos obtenidos para mostrar contacto:
+				let email = data.results[0].email;
+				let phone = data.results[0].phone;
+				let cell = data.results[0].cell;
+				
+				//URL de imágen:
+				let imagen = data.results[0].picture.large;
+
+
+					//Formamos el código HTML que se mostrará:			
+				    htmlMostrar += '<table border=1 align="center">';
+					htmlMostrar += `<tr><td colspan="2" style="text-align:center;"><img src="${imagen}" /></td></tr>`;
+					htmlMostrar += `<tr><td>Nombre: </td><td>${llamamiento}. ${name} ${lastName}</td></tr>`;
+					htmlMostrar += `<tr><td>Género: </td><td>${showGender}</td></tr>`;
+					htmlMostrar += `<tr><td>Edad: </td><td>${age} años</td></tr>`;
+					htmlMostrar += `<tr><td>Dirección: </td><td>${streetName}, ${number}</td></tr>`;
+					htmlMostrar += `<tr><td>CP y ciudad: </td><td>${postcode} , ${city}</td></tr>`;
+					htmlMostrar += `<tr><td>Correo electrónico: </td><td>${email}</td></tr>`;
+					htmlMostrar += `<tr><td>Teléfono: </td><td>${phone}</td></tr>`;
+					htmlMostrar += `<tr><td>Móvil: </td><td>${cell}</td></tr>`;
+					htmlMostrar += '</table>';
+
+					//Cargamos html generado en el div "resultados"
+                    $("#resultados").html(htmlMostrar);
+			}
+			window.addEventListener("load", iniciar, false);
+		</script>
+<style>
+    table{
+        border:1px solid #CCC;
+    }
+</style>
+	</head>
+	<body align="center">
+		<h1>DWEC 07 - Ejercicio 3</h1>
+		<h2>JQuery y JSON</h2>
+		<h3>Jorge Jiménez Juara</h3>
+		<p>
+			<button onclick="iniciar()">Generar otra identidad</button>
+			<br/>
+			<div id="resultados"></div>
+		</p>
+	</body>
+</html>

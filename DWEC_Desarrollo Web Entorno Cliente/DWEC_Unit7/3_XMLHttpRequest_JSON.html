@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DWEC07.- Ejemplo petición XMLHttpRequest con JSON</title>
+		<script type="text/javascript">
+			let peticion;
+
+
+			//Función cargada:
+			const iniciar = () => {
+
+				//Abrimos XMLHttpRequest
+				peticion = new XMLHttpRequest();
+				//Mediante Open, pasamos por parámetro GET y la URL de la API
+				peticion.open('GET', "https://randomuser.me/api/"); 
+				//Enviamos petición.
+				peticion.send();
+				//Listener load que inicia función "cargada":
+				peticion.addEventListener("load", cargada);
+			}
+
+			//Función cargada:
+			const cargada = () => {
+				let htmlMostrar = '';
+
+				//Usamos JSON.parse para parsear el contenido JSON:
+				let resultados = JSON.parse(peticion.responseText);
+				
+				//Datos de genero y edad. Para traducir genero usamos un condicional.
+				let gender = resultados.results[0].gender;
+				let age = resultados.results[0].dob.age;
+				let showGender;
+				if(gender == "male"){ showGender = "Masculino"; }else{ showGender = "Femenino"; }
+				
+				//Datos obtenidos para formar el nombre de persona:
+				let llamamiento = resultados.results[0].name.title;
+				let name = resultados.results[0].name.first[0];
+				let lastName = resultados.results[0].name.last;
+
+				//Datos obtenidos para mostrar dirección:
+				let streetName = resultados.results[0].location.street.name;
+				let number = resultados.results[0].location.street.number;
+				let postcode = resultados.results[0].postcode;
+				let city = resultados.results[0].city;
+
+				//Datos obtenidos para mostrar contacto:
+				let email = resultados.results[0].email;
+				let phone = resultados.results[0].phone;
+				let cell = resultados.results[0].cell
+
+				//URL de imágen:
+				let imagen = resultados.results[0].picture.large;
+				
+
+
+					//Formamos el código HTML que se mostrará:			
+					htmlMostrar += '<table border=1 align="center">';
+					htmlMostrar += `<tr><td colspan="2" style="text-align:center;"><img src="${imagen}" /></td></tr>`;
+					htmlMostrar += `<tr><td>Nombre: </td><td>${llamamiento}. ${name} ${lastName}</td></tr>`;
+					htmlMostrar += `<tr><td>Género: </td><td>${showGender}</td></tr>`;
+					htmlMostrar += `<tr><td>Edad: </td><td>${age} años</td></tr>`;
+					htmlMostrar += `<tr><td>Dirección: </td><td>${streetName}, ${number}</td></tr>`;
+					htmlMostrar += `<tr><td>CP y ciudad: </td><td>${postcode} , ${city}</td></tr>`;
+					htmlMostrar += `<tr><td>Correo electrónico: </td><td>${email}</td></tr>`;
+					htmlMostrar += `<tr><td>Teléfono: </td><td>${phone}</td></tr>`;
+					htmlMostrar += `<tr><td>Móvil: </td><td>${cell}</td></tr>`;
+					htmlMostrar += '</table>';
+
+				//Cargamos en el div resultados el HTML generado:
+				document.getElementById("resultados").innerHTML = htmlMostrar;
+			}
+
+			window.addEventListener("load", iniciar, false);
+		</script>
+<style>
+    table{
+        border:1px solid #CCC;
+    }
+</style>
+	</head>
+	<body align="center">
+		<h1>DWEC 07 - Ejercicio 3</h1>
+		<h2>Javascript, XMLHttpRequest y JSON</h2>
+		<h3>Jorge Jiménez Juara</h3>
+		<p>
+			<button onclick="iniciar()">Generar otra identidad</button>
+			<br/>
+			<div id="resultados"></div>
+		</p>
+	</body>
+</html>

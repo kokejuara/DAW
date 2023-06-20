@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Jiménez Juara - DWEC04</title>
+</head>
+<body>
+    <h1>DWEC04 - Jorge Jiménez Juara</h1>
+    <h3>Estructuras definidas por el usuario en JavaScript</h3>
+    <hr/>
+</body>
+
+<script type="text/javascript">
+    class Edificio {
+        //Atributos o propiedades de Edicio.
+        calle;
+        numero;
+        cp;
+        //Este atributo array, contendra los pisos. Se pretende con ella crer una matriz multidimensional.
+        arrayPropietarios = [];
+        
+
+        //Constructor de la clase Edificio
+        constructor(calle, numero, cp){
+            this.calle = calle;
+            this.numero = numero;
+            this.cp = cp;
+            //Cuando usemos el constructor (instanciemos un objeto) publicamos un texto en negrita.
+            document.writeln(`<b>Construido nuevo edificio en calle: ${this.imprimeCalle()}, nº: ${this.imprimeNumero()}, CP: ${this.imprimeCodigoPostal()}</b> <br/>`);
+        }
+
+        
+        //Metodos de set (Sirven para cambiar los valores actuales de los edificios).
+        modificarNumero(numero){
+            this.numero = numero;
+        }
+        modificarCalle(calle){
+            this.calle = calle;
+        }
+        modificarCodigoPostal(cp){
+            this.cp = cp;
+        }
+
+        //Metodos get (Sirven para acceder a los atributos y retornarlos.)
+        imprimeCalle(){ return this.calle; }
+        imprimeNumero(){ return this.numero; }
+        imprimeCodigoPostal(){ return this.cp; }
+
+        //Metodo agregarPlantasYPuertas
+        agregarPlantasYPuertas(plantas, puertas){
+
+            //Obtenemos el numero total de plantas ya creadas. En caso de no haber, será 0.
+            let totalPlantas = this.arrayPropietarios.length+plantas;
+           
+            //Creamos un bucle que recorre desde la longitud del elemento actual hasta la longitud + las plantas a crear
+            for(let i=this.arrayPropietarios.length; i<totalPlantas; i++){
+                //Cargamos la matriz dimensional en el arrayPropietarios, con la cantidad de puertas que queramos crear en la planta.
+                this.arrayPropietarios[i] = new Array(puertas);   
+                
+            }
+        }
+
+        //Método imprimirPlantas(), retorna el edificio entero.
+        imprimePlantas(){
+
+            //Mostramos la cabecera con los datos del edificio:
+            document.write(`<h3>Listado de propietarios del edificio calle ${this.imprimeCalle()} número ${this.imprimeNumero()}</h3><br/>`);
+            
+            //Creamos un bucle para recorrer el arrayPropietarios con las plantas que hay:
+            for(let i=0; i<this.arrayPropietarios.length; i++){
+                /*
+                Creamos ahora un bucle para recorrer los pisos que hay, para ello utilizamos la longitud de arrayPropietarios[i]
+                donde i es el número actual del bucle anterior (es decir, la planta que está recorriendo).
+                */
+                 for(let j=0; j<this.arrayPropietarios[i].length; j++){
+
+                    /*
+                    Como el ejercicio pide, que cuando un piso esté vacio no mostremos nada, y por defecto si la matriz
+                    no contiene datos mostrará undefined, creo una variable propietario, y mediante un if, compruebo
+                    que el piso actual (arrayPropietario[i][j]) donde i es la planta y j la puerta, tenga algun valor o por
+                    el contrario es undefined. Si es undefined, se asigno el valor de un String vacío, mientras que si tiene valor
+                    la variable propietario tendrá el mismo valor.
+                    */
+                    let propietario;
+                    if(this.arrayPropietarios[i][j] === undefined){
+                        propietario = "";
+                    }else{
+                        propietario = this.arrayPropietarios[i][j];
+                    }
+                    /*
+                    Imprimimos los datos del bucle. Como por defecto el index de un array comienza en 0, y para nosotros
+                    no existe piso 0 ni planta 0, sumamos 1 unidad a cada una de estas variables para obtener el valor
+                    real del piso. Después, mostramos la variable propietario:
+                    */
+                    document.write(`Propietario del piso ${j+1}, de la planta ${i+1}: ${propietario}<br/>`);
+               }
+            }
+        }
+
+
+        /*
+        Método agregar propietario. Añade un nombre pasado por parámetro a la matriz multidimensional en la posición que le pasemos
+        de planta y puerta. Como introduciremos la puerta y planta que nos piden en el ejercicio y el index del array es la posición
+        anterior, le restamos 1.
+        */
+        agregarPropietario(nombre, planta, puerta){
+            this.arrayPropietarios[planta-1][puerta-1] = nombre;
+            document.write(`<p style="color:red">${nombre} es ahora propietario de la puerta ${puerta} de la planta ${planta}</p>`);
+        }
+
+    }
+
+    //Instanciamos 3 objetos edificioA, edificioB y edificioC con datos:
+    var edificioA = new Edificio("Garcia Prieto", "58", 15706);
+    var edificioB = new Edificio("Camino Caneiro", "29", 32004);
+    var edificioC = new Edificio("San Clemente", "s/n", 15705);
+    
+    document.write("<hr/>");
+
+    //Agregamos 2 plantas y 3 puertas por planta al edificio A
+    edificioA.agregarPlantasYPuertas(2, 3);
+
+    
+    //Agregamos 4 propietarios al edificio A.
+    edificioA.agregarPropietario("Jose Antoio Lopez", 1, 1);
+    edificioA.agregarPropietario("Luisa Martinez", 1, 2);
+    edificioA.agregarPropietario("Marta Castellón", 1, 3);
+    edificioA.agregarPropietario("Antonio Pereira", 2, 2);
+
+    document.write("<hr/>");
+
+    //IMPRIMIMOS EDIFICIO ANTES DE AÑADIR NUEVA PLANTA Y PROPIETARIO:
+    edificioA.imprimePlantas();
+    
+    document.write("<hr/>");
+
+    //Agregamos una planta más también con 3 puertas:
+    edificioA.agregarPlantasYPuertas(1,3);
+    
+    //Añadimos un nuevo propietario
+    edificioA.agregarPropietario("Pedro Mejide", 3, 2);
+
+    document.write("<hr/>");
+    
+    //Imprimimos el edificio:
+    edificioA.imprimePlantas();
+
+    
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DWEC07.- Ejemplo petición JQuery con XML</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			
+			//Iniciamos JQuery y pasamos la url, y el tipo de datos y el método (GET)
+			// Indicamos que una vez hecho, ejecute la función "cargada". Si no, mostramos error en consola:
+			const iniciar = () => {
+				$.ajax({
+					url: "https://randomuser.me/api/?format=xml",
+					method: "GET",
+					dataType: "xml"
+				}).done(cargada).fail(error => {
+					console.log(error);
+				});
+			}
+
+			//Función cargada:
+			const cargada = (data) => {
+				let htmlMostrar = '';
+
+				//Usaremos $(data) y el método .find para encontrar las etiquetas del XML.
+				
+				//Datos de genero y edad. Para traducir genero usamos un condicional.
+				let gender = $(data).find("gender").first().text();
+				let age = $(data).find("age").first().text();
+				let showGender;
+				if(gender == "male"){ showGender = "Masculino"; }else{ showGender = "Femenino"; }
+
+
+				//Datos obtenidos para formar el nombre de persona:
+				let llamamiento = $(data).find("title").first().text();
+				let name = $(data).find("first").first().text();
+				let lastName = $(data).find("last").first().text();
+
+				//Datos obtenidos para mostrar dirección:
+				let streetName = $(data).find("name").eq(1).text();
+				let number = $(data).find("number").first().text();
+				let postcode = $(data).find("postcode").first().text();
+				let city = $(data).find("city").first().text();
+
+				//Datos obtenidos para mostrar contacto:
+				let email = $(data).find("email").first().text();
+				let phone = $(data).find("phone").first().text();
+				let cell = $(data).find("cell").first().text();
+
+				//URL de imágen:
+				let imagen = $(data).find("large").first().text();
+				
+
+					//Formamos el código HTML que se mostrará:			
+				    htmlMostrar += '<table border=1 align="center">';
+					htmlMostrar += `<tr><td colspan="2" style="text-align:center;"><img src="${imagen}" /></td></tr>`;
+					htmlMostrar += `<tr><td>Nombre: </td><td>${llamamiento}. ${name} ${lastName}</td></tr>`;
+					htmlMostrar += `<tr><td>Género: </td><td>${showGender}</td></tr>`;
+					htmlMostrar += `<tr><td>Edad: </td><td>${age} años</td></tr>`;
+					htmlMostrar += `<tr><td>Dirección: </td><td>${streetName}, ${number}</td></tr>`;
+					htmlMostrar += `<tr><td>CP y ciudad: </td><td>${postcode} , ${city}</td></tr>`;
+					htmlMostrar += `<tr><td>Correo electrónico: </td><td>${email}</td></tr>`;
+					htmlMostrar += `<tr><td>Teléfono: </td><td>${phone}</td></tr>`;
+					htmlMostrar += `<tr><td>Móvil: </td><td>${cell}</td></tr>`;
+					htmlMostrar += '</table>';
+
+					//Cargamos html generado en el div "resultados"
+                    $("#resultados").html(htmlMostrar);
+			}
+			window.addEventListener("load", iniciar, false);
+		</script>
+<style>
+    table{
+        border:1px solid #CCC;
+    }
+</style>
+	</head>
+	<body align="center">
+		<h1>DWEC 07 - Ejercicio 4</h1>
+		<h2>JQuery y XML</h2>
+		<h3>Jorge Jiménez Juara</h3>
+		<p>
+			<button onclick="iniciar()">Generar otra identidad</button>
+			<br/>
+			Contenedor resultados:
+			<div id="resultados"></div>
+		</p>
+	</body>
+</html>

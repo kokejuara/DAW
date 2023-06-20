@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+</head>
+<body>
+    <table border="1 solid" align="center">
+        <tr>
+            <td align="center">Tabla de multiplicar del 7</td>
+            <td align="center">Tabla de suma del 8</td>
+            <td align="center">Tabla de dividir del 9</td>
+        </tr>
+        <tr>
+            <td align="center"><label id="tabla7"></label></td>
+            <td align="center"><label id="tabla8"></label></td>
+            <td align="center"><label id="tabla9"></label></td>
+        </tr>
+    </table>
+</body>
+</html>
+<script>
+    //EJERCICIO TABLA DEL 7 DEVUELVE VALOR EN LABEL TABLA7 con bucle FOR
+    let tabla7 = '';
+    for(let i = 0; i<11; i++){
+        tabla7 = `${tabla7}7x${i}=${7*parseInt(i)}<br/>`;
+    }
+    document.getElementById("tabla7").innerHTML = tabla7;
+
+    //EJERCICIO TABLA DE SUMA DEL 8 QUE DEVUELVE EL VALOR EN LABEL TABLA8 CON BUCLE WHILE
+    let tabla8 = '';
+    let j=0;
+    while(j < 10){
+
+        tabla8 = `${tabla8}${j}+8=${parseInt(j)+8}<br/>`;
+        j++;
+    }
+    document.getElementById("tabla8").innerHTML = tabla8;
+
+    //EJERCICIO TABLA DIVIDIR DEL 9 QUE DEVUELVE EL VALOR EN LABEL TABLA9 CON DO-WHILE
+    let tabla9 = '';
+    let m = 0;
+    do{
+        let resto = m%9;
+        if(resto==0){
+        tabla9 = `${tabla9}${m}/9=${m/9}<br/>`;
+        }
+        m++;
+        
+    }while(m < 100);
+    document.getElementById("tabla9").innerHTML = tabla9;
+</script>
